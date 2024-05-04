@@ -1,33 +1,68 @@
-const db = require("../knexfile");
+import db from "../database/conection";
 
 interface Character {
   id: number;
   name: string;
   description: string;
-  imageUrl: string;
-  mainCharacter: boolean;
+  image_url: string;
+  main_character: boolean;
 }
 
 const Character = {
-  async getMainCharacters() {
-    return await db("characters").where({ mainCharacter: true });
+  async getAllCharacters() {
+    try {
+      return await db("characters").select("*");
+    } catch (error) {
+      throw new Error("Erro ao buscar os personagens");
+    }
   },
 
-  async getAllCharacters() {
-    return await db("characters");
+  async getCharacterById(id: number) {
+    try {
+      const character = await db("characters").where({ id }).first();
+      if (!character) {
+        throw new Error("Personagem não encontrado");
+      }
+      return character;
+    } catch (error) {
+      throw new Error("Erro ao buscar o personagem");
+    }
   },
 
   async createCharacter(character: Character) {
-    await db("characters").insert(character);
+    try {
+      const [id] = await db("characters").insert(character);
+      return { characterId: id,...character };
+    } catch (error) {
+      throw new Error("Erro ao criar personagem");
+    }
   },
 
   async updateCharacter(id: number, character: Character) {
-    await db("characters").where({ id }).update(character);
+    try {
+      await db("characters").where({ id }).update(character);
+      return {...character, id };
+        } catch (error) {
+      throw new Error("Erro ao atualizar personagem");
+    }
   },
 
   async deleteCharacter(id: number) {
-    await db("characters").where({ id }).del();
+    try {
+      await db("characters").where({ id }).del();
+    } catch (error) {
+      throw new Error("Erro ao deletar personagem");
+    }
   },
+
+  async getMainCharacters() {
+    try {
+      return await db("characters").where({ main_character: true }).select("*");
+    } catch (error) {
+      throw new Error("Erro ao buscar os personagens principais");
+    }
+  },
+  
 };
 
 export default Character;

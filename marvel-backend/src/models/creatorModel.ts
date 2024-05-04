@@ -1,4 +1,4 @@
-const db = require("../knexfile");
+import db from "../database/conection";
 
 interface Creator {
   id: number;

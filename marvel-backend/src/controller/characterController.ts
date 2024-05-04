@@ -3,7 +3,7 @@ import Character from "../models/characterModel";
 
 const getAllCharacters = async (_req: Request, res: Response) => {
   try {
-    const characters = await Character.getAllCharacters();
+    const characters = await Character.getMainCharacters();
     res.json(characters);
   } catch (error) {
     console.error("Erro ao buscar os personagens:", error);
@@ -12,25 +12,25 @@ const getAllCharacters = async (_req: Request, res: Response) => {
 };
 
 const createCharacter = async (req: Request, res: Response) => {
-  try {
-    const character = req.body;
-    const newCharacter = await Character.createCharacter(character);
-    res.status(201).json(newCharacter);
-  } catch (error) {
-    console.error("Erro ao criar personagem:", error);
-    res.status(500).json({ error: "Erro interno ao criar personagem" });
-  }
+try {
+const character = req.body;
+const newCharacter = await Character.createCharacter(character);
+res.status(201).json(newCharacter);
+} catch (error) {
+console.error("Erro ao criar personagem:", error);
+res.status(500).json({ error: "Erro interno ao criar personagem" });
+}
 };
 
 const updateCharacter = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const updatedCharacter = await Character.updateCharacter(parseInt(id), req.body);
-    res.json(updatedCharacter);
-  } catch (error) {
-    console.error("Erro ao atualizar personagem:", error);
-    res.status(500).json({ error: "Erro interno ao atualizar personagem" });
-  }
+try {
+const { id } = req.params;
+const updatedCharacter = await Character.updateCharacter(parseInt(id), req.body);
+res.json(updatedCharacter);
+} catch (error) {
+console.error("Erro ao atualizar personagem:", error);
+res.status(500).json({ error: "Erro interno ao atualizar personagem" });
+}
 };
 
 const deleteCharacter = async (req: Request, res: Response) => {
