@@ -1,4 +1,4 @@
-exports.seed = function (knex) {
+exports.seed = function (knex: (arg0: string) => { (): any; new(): any; del: { (): Promise<any>; new(): any; }; insert: { (arg0: { name: string; description: string; image_url: string; main_character: boolean; }[]): any; new(): any; }; }) {
   return knex("characters")
     .del()
     .then(function () {
