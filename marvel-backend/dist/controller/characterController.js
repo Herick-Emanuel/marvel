@@ -35,26 +35,97 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var marvelServices_1 = require("../services/marvelServices");
-exports.getMainCharacters = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var characterModel_1 = __importDefault(require("../models/characterModel"));
+var getAllCharacters = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var characters, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, (0, marvelServices_1.getCharactersFromMarvelAPI)()];
+                return [4 /*yield*/, characterModel_1.default.getAllCharacters()];
             case 1:
                 characters = _a.sent();
-                console.log(characters);
                 res.json(characters);
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _a.sent();
-                console.error("Erro interno ao buscar os personagens:", error_1);
+                console.error("Erro ao buscar os personagens:", error_1);
                 res.status(500).json({ error: "Erro interno ao buscar os personagens" });
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); };
+var createCharacter = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var character, newCharacter, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                character = req.body;
+                return [4 /*yield*/, characterModel_1.default.createCharacter(character)];
+            case 1:
+                newCharacter = _a.sent();
+                res.status(201).json(newCharacter);
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _a.sent();
+                console.error("Erro ao criar personagem:", error_2);
+                res.status(500).json({ error: "Erro interno ao criar personagem" });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+var updateCharacter = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, updatedCharacter, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                id = req.params.id;
+                return [4 /*yield*/, characterModel_1.default.updateCharacter(parseInt(id), req.body)];
+            case 1:
+                updatedCharacter = _a.sent();
+                res.json(updatedCharacter);
+                return [3 /*break*/, 3];
+            case 2:
+                error_3 = _a.sent();
+                console.error("Erro ao atualizar personagem:", error_3);
+                res.status(500).json({ error: "Erro interno ao atualizar personagem" });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+var deleteCharacter = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, error_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                id = req.params.id;
+                return [4 /*yield*/, characterModel_1.default.deleteCharacter(parseInt(id))];
+            case 1:
+                _a.sent();
+                res.sendStatus(204);
+                return [3 /*break*/, 3];
+            case 2:
+                error_4 = _a.sent();
+                console.error("Erro ao deletar personagem:", error_4);
+                res.status(500).json({ error: "Erro interno ao deletar personagem" });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.default = {
+    getAllCharacters: getAllCharacters,
+    createCharacter: createCharacter,
+    updateCharacter: updateCharacter,
+    deleteCharacter: deleteCharacter,
+};

@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-const characterRoutes = require("./routes/characterRoutes");
+import characterRoutes from "./routes/characterRoutes";
 const app = express();
 const PORT = process.env.PORT || 4000;
 

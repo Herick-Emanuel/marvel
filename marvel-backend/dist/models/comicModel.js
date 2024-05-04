@@ -37,32 +37,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var db = require("../knexfile");
-var Character = {
-    getMainCharacters: function () {
+var Comic = {
+    getAllComics: function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, db("characters").where({ mainCharacter: true })];
+                    case 0: return [4 /*yield*/, db("comics")];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     },
-    getAllCharacters: function () {
+    createComic: function (comic) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, db("characters")];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    },
-    createCharacter: function (character) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, db("characters").insert(character)];
+                    case 0: return [4 /*yield*/, db("comics").insert(comic)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -70,11 +60,11 @@ var Character = {
             });
         });
     },
-    updateCharacter: function (id, character) {
+    updateComic: function (id, comic) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, db("characters").where({ id: id }).update(character)];
+                    case 0: return [4 /*yield*/, db("comics").where({ id: id }).update(comic)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -82,11 +72,11 @@ var Character = {
             });
         });
     },
-    deleteCharacter: function (id) {
+    deleteComic: function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, db("characters").where({ id: id }).del()];
+                    case 0: return [4 /*yield*/, db("comics").where({ id: id }).del()];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -95,4 +85,4 @@ var Character = {
         });
     },
 };
-exports.default = Character;
+exports.default = Comic;
