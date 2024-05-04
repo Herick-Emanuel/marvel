@@ -7,35 +7,55 @@ const timestamp = new Date().getTime().toString();
 const hash = md5(timestamp + privateKey + publicKey);
 
 const marvelApi = axios.create({
-  baseURL: "https://gateway.marvel.com/v1/public/",
+baseURL: "https://gateway.marvel.com/v1/public/",
 });
 
-export const getCharacters = async () => {
+export const getCharacters = async (sagaName) => {
     try {
-        const response = await marvelApi.get('/characters', {
-            params: {
-                apikey: publicKey,
-                ts: timestamp,
-                hash: hash,
-            }
+        const eventsResponse = await marvelApi.get("/events", {
+          params: {
+            apikey: publicKey,
+            ts: timestamp,
+            hash: hash,
+            nameStartsWith: sagaName, 
+          },
         });
+    
+        const eventId =
+          eventsResponse.data.data.results.length > 0
+            ? eventsResponse.data.data.results[0].id
+            : null;
+    
+        if (!eventId) {
+          return [];
+        }
+    
+        const response = await marvelApi.get("/characters", {
+          params: {
+            apikey: publicKey,
+            ts: timestamp,
+            hash: hash,
+            events: eventId, 
+          },
+        });
+    
         return response.data.data.results;
-    } catch (error) {
-        throw new Error('Erro ao buscar os personagens: ' + error.message);
-    }
-};
+      } catch (error) {
+        throw new Error("Erro ao buscar os personagens da saga: " + error.message);
+      }
+    };
 
 export const getComics = async () => {
-    try {
-        const response = await marvelApi.get('/comics', {
-            params: {
-                apikey: publicKey,
-                ts: timestamp,
-                hash: hash,
-            }
-        });
-        return response.data.data.results;
-    } catch (error) {
-        throw new Error('Erro ao buscar as comics: ' + error.message);
-    }
+try {
+const response = await marvelApi.get('/comics', {
+params: {
+apikey: publicKey,
+ts: timestamp,
+hash: hash,
+}
+});
+return response.data.data.results;
+} catch (error) {
+throw new Error('Erro ao buscar as comics: ' + error.message);
+}
 };
