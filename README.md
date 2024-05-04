@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+Desafio Prova - API Marvel Saga
+Objetivo
+Este projeto consiste no desenvolvimento de uma API própria que funciona como intermediário entre a API da Marvel e o usuário final. A API foca em uma saga específica do Universo Marvel, permitindo aos usuários explorar os personagens envolvidos, os quadrinhos que compõem a saga e mais.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Descrição
+1. Registro na Marvel API
+Para usar esta API, é necessário registrar-se no Marvel Developer Portal e obter uma chave de API.
 
-## Available Scripts
+2. Saga Escolhida
+A saga escolhida para esta API é "X-Men: Fênix Negra" (The Dark Phoenix Saga).
 
-In the project directory, you can run:
+3. Modelagem das Entidades
+As principais entidades modeladas na API são:
 
-### `npm start`
+Personagens: Representa os personagens que aparecem na saga, com atributos como nome, descrição e URL da imagem.
+Quadrinhos (Comics): Armazena informações sobre os quadrinhos que fazem parte da saga, incluindo título, descrição, data de publicação e capa.
+Criadores: Representa os criadores dos quadrinhos, como roteiristas e desenhistas, incluindo nome, função e os quadrinhos aos quais contribuíram.
+4. Implementação do CRUD
+Operações CRUD foram implementadas para cada uma das entidades (Personagem, Comic, Criador), permitindo criar, ler, atualizar e deletar registros no sistema.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+5. Rotas Auxiliares
+Além das operações CRUD, foram criadas rotas auxiliares para complementar a funcionalidade da aplicação.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+6. Desenvolvimento de Testes
+Testes Automatizados: Foram escritos testes unitários e de integração para garantir o correto funcionamento das operações CRUD e da lógica de negócios da API.
+Testes End-to-End (E2E): Foram implementados testes E2E para simular o fluxo completo de uso da API, desde a requisição inicial até a resposta final.
+Teste de Carga: Foi realizado um teste de carga para avaliar a performance e a estabilidade da API sob condições de uso elevado.
+Docker
+A aplicação foi containerizada com Docker, facilitando o deployment e garantindo um ambiente de desenvolvimento consistente.
 
-### `npm test`
+Instruções de Uso
+Clone o repositório:
+bash
+Copy code
+git clone https://github.com/seu-usuario/desafio-prova.git
+Navegue até o diretório do projeto:
+bash
+Copy code
+cd desafio-prova
+Instale as dependências:
+bash
+Copy code
+npm install
+Defina as variáveis de ambiente no arquivo .env conforme necessário.
+Execute o servidor:
+bash
+Copy code
+npm run start
+Acesse a API em http://localhost:4000.
+Documentação das Rotas
+A documentação das rotas está disponível no diretório docs.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Relatórios de Testes
+Os resultados dos testes estão disponíveis no diretório test-reports.
 
-### `npm run build`
+Contribuição
+Contribuições são bem-vindas! Para maiores detalhes, consulte CONTRIBUTING.md.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Licença
+Este projeto é licenciado sob a licença MIT.

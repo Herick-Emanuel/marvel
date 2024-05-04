@@ -1,7 +1,6 @@
-import knex from 'knex';
-import path from 'path';
+const path = require('path');
 
-const db = knex({
+module.exports = {
   client: 'pg',
   connection: {
     host: 'localhost',
@@ -15,6 +14,4 @@ const db = knex({
   seeds: {
     directory: path.resolve(__dirname, 'seeds'),
   },
-});
-
-export default db;
+};
