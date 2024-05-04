@@ -46,7 +46,7 @@ var getAllCharacters = function (_req, res) { return __awaiter(void 0, void 0, v
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, characterModel_1.default.getMainCharacters()];
+                return [4 /*yield*/, characterModel_1.default.getAllCharacters()];
             case 1:
                 characters = _a.sent();
                 res.json(characters);

@@ -3,7 +3,7 @@ import Character from "../models/characterModel";
 
 const getAllCharacters = async (_req: Request, res: Response) => {
   try {
-    const characters = await Character.getMainCharacters();
+    const characters = await Character.getAllCharacters();
     res.json(characters);
   } catch (error) {
     console.error("Erro ao buscar os personagens:", error);

@@ -54,15 +54,6 @@ const Character = {
       throw new Error("Erro ao deletar personagem");
     }
   },
-
-  async getMainCharacters() {
-    try {
-      return await db("characters").where({ main_character: true }).select("*");
-    } catch (error) {
-      throw new Error("Erro ao buscar os personagens principais");
-    }
-  },
-  
 };
 
 export default Character;

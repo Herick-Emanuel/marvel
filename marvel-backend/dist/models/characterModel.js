@@ -148,22 +148,5 @@ var Character = {
             });
         });
     },
-    getMainCharacters: function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var error_6;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, (0, conection_1.default)("characters").where({ main_character: true }).select("*")];
-                    case 1: return [2 /*return*/, _a.sent()];
-                    case 2:
-                        error_6 = _a.sent();
-                        throw new Error("Erro ao buscar os personagens principais");
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    },
 };
 exports.default = Character;
