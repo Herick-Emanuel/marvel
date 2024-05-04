@@ -5,7 +5,7 @@ import ErrorMessage from '../components/errorMessage';
 import LoadingSpinner from '../components/loadingSpinner';
 import { getComics } from '../services/marvelAPI';
 import { useState, useEffect } from 'react';
-import './../index.css';
+import '../index.css';
 
 
 const HomePage = () => {
