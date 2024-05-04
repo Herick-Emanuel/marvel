@@ -49,6 +49,41 @@ npm run start
 Acesse a API em http://localhost:4000.
 Documentação das Rotas
 A documentação das rotas está disponível no diretório docs.
+Execute as migrações do banco de dados:
+bash
+Copy code
+npx knex migrate:latest --knexfile=./src/database/knexfile.js
+Execute as seeds para popular o banco de dados:
+bash
+Copy code
+npx knex seed:run --knexfile=./src/database/knexfile.js
+Executando a aplicação
+Para iniciar a aplicação, execute:
+
+bash
+Copy code
+npm start
+A aplicação estará disponível em http://localhost:4000.
+
+Rotas
+GET /api/characters: Retorna todos os personagens da saga.
+POST /api/characters: Cria um novo personagem.
+GET /api/characters/:id: Retorna um personagem específico pelo ID.
+PUT /api/characters/:id: Atualiza um personagem existente.
+DELETE /api/characters/:id: Exclui um personagem existente.
+(Rotas para quadrinhos e criadores são similares)
+
+Docker
+Para executar a aplicação utilizando Docker, execute:
+
+bash
+Copy code
+docker-compose up --build
+Isso criará e iniciará os containers para a aplicação e o banco de dados PostgreSQL.
+
+Testes
+Testes automatizados: Execute npm test para executar os testes unitários e de integração.
+Testes End-to-End (E2E): Os testes E2E estão localizados na pasta tests/e2e.
 
 Relatórios de Testes
 Os resultados dos testes estão disponíveis no diretório test-reports.
